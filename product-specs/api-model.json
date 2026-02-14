@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SilverFoxV1",
+  "type": "object",
+  "properties": {
+    "users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "role": { "type": "string", "enum": ["elder", "caregiver"] },
+          "displayName": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["id", "email", "role", "displayName", "createdAt"]
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "elderUserId": { "type": "string" },
+          "name": { "type": "string" },
+          "settings": {
+            "type": "object",
+            "properties": {
+              "fontSize": { "type": "string", "enum": ["large", "xlarge", "xxlarge"] },
+              "highContrast": { "type": "boolean" },
+              "reducedMotion": { "type": "boolean" },
+              "editorLocked": { "type": "boolean" }
+            },
+            "required": ["fontSize", "highContrast", "reducedMotion", "editorLocked"]
+          }
+        },
+        "required": ["id", "elderUserId", "name", "settings"]
+      }
+    },
+    "buttons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "profileId": { "type": "string" },
+          "label": { "type": "string", "minLength": 1 },
+          "imageUrl": { "type": "string" },
+          "guidanceHint": { "type": "string" },
+          "actionType": {
+            "type": "string",
+            "enum": ["web", "call", "message", "app", "automation"]
+          },
+          "target": { "type": "string" },
+          "openImmediately": { "type": "boolean", "const": true },
+          "sortOrder": { "type": "integer", "minimum": 0 },
+          "updatedBy": { "type": "string" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "id",
+          "profileId",
+          "label",
+          "actionType",
+          "target",
+          "openImmediately",
+          "sortOrder",
+          "updatedBy",
+          "updatedAt"
+        ]
+      }
+    },
+    "accessLinks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "caregiverUserId": { "type": "string" },
+          "elderUserId": { "type": "string" },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["read", "edit_buttons", "edit_settings"]
+            }
+          }
+        },
+        "required": ["caregiverUserId", "elderUserId", "permissions"]
+      }
+    }
+  },
+  "required": ["users", "profiles", "buttons", "accessLinks"]
+}

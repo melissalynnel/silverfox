@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pharmacy pill icon">
+  <defs>
+    <radialGradient id="pillBg" cx="35%" cy="30%" r="80%">
+      <stop offset="0" stop-color="#f2f9ff"/>
+      <stop offset="1" stop-color="#cde2f5"/>
+    </radialGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#pillBg)"/>
+  <g transform="rotate(-35 32 32)">
+    <rect x="16" y="25" width="32" height="14" rx="7" fill="#0f5b7a"/>
+    <path d="M32 25v14" stroke="#f6fbff" stroke-width="3"/>
+    <path d="M16 32h32" stroke="#f6fbff" stroke-width="3" opacity="0.75"/>
+  </g>
+</svg>
